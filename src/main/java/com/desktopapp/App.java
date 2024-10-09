@@ -12,7 +12,7 @@ public class App extends Application
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Scene scene = MainController.CreateScene();
+        Scene scene = LoginController.CreateScene(0);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
