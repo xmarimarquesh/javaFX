@@ -14,11 +14,11 @@
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4f4f4f11" height="93.0" layoutX="90.0" layoutY="252.0" stroke="WHITE" strokeType="INSIDE" width="451.0" />
             <Circle fx:id="blue" fill="#1f93ffad" layoutX="87.0" layoutY="131.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="pink" fill="#ff1fd689" layoutX="181.0" layoutY="131.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="green" fill="#6bff219a" layoutX="276.0" layoutY="131.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="yellow" fill="#fff81f8b" layoutX="371.0" layoutY="131.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="pink" fill="#ff1fd68a" layoutX="181.0" layoutY="131.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="green" fill="#6bff2199" layoutX="276.0" layoutY="131.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="yellow" fill="#fff81f8c" layoutX="371.0" layoutY="131.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fx:id="red" fill="#ff1f1f87" layoutX="462.0" layoutY="131.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="purple" fill="#ad1fff86" layoutX="554.0" layoutY="131.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="purple" fill="#ad1fff87" layoutX="554.0" layoutY="131.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fx:id="azul" fill="#1f93ffad" layoutX="142.0" layoutY="298.0" radius="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="rosa" fill="#ff1fd689" layoutX="213.0" layoutY="298.0" radius="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="verde" fill="#6bff21a7" layoutX="285.0" layoutY="298.0" radius="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />

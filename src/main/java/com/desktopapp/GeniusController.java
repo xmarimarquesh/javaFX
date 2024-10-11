@@ -10,6 +10,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -35,6 +38,8 @@ public class GeniusController {
     
     private Integer id;
     public void setId(Integer id) { this.id = id; }
+
+    Timer timer = new Timer();
 
     @FXML
     private Text email;
@@ -103,14 +108,19 @@ public class GeniusController {
                     break;
             }
 
-            Thread.sleep(2000);
+            timer.scheduleAtFixedRate(new TimerTask() {
+                
+                public void run() {
 
-            blue.setFill(Color.web("#1f93ffad"));
-            pink.setFill(Color.web("#ff1fd68a"));
-            green.setFill(Color.web("#6bff2199"));
-            yellow.setFill(Color.web("#fff81f8c"));
-            red.setFill(Color.web("#ff1f1f87"));
-            purple.setFill(Color.web("#ad1fff87"));
+                    blue.setFill(Color.web("#1f93ffad"));
+                    pink.setFill(Color.web("#ff1fd68a"));
+                    green.setFill(Color.web("#6bff2199"));
+                    yellow.setFill(Color.web("#fff81f8c"));
+                    red.setFill(Color.web("#ff1f1f87"));
+                    purple.setFill(Color.web("#ad1fff87"));
+                }
+            }, 2000, 2000);
+
         }
     }
 }
