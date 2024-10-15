@@ -1,5 +1,7 @@
 package com.desktopapp;
 
+import java.util.ArrayList;
+
 public class Spring {
     private double force = 0;
     private final double k = 5;
@@ -7,7 +9,6 @@ public class Spring {
     private double x = 0;
     private Body b1;
     private Body b2;
-
 
     public Spring(double force, double lenght, double x, Body body1, Body body2) {
         this.force = force;

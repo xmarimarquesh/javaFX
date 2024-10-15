@@ -1,7 +1,7 @@
 package com.desktopapp;
 
 public class Body {
-    private double mass = 15;
+    private double mass = 0;
     private double vY = 0;
     private double posY = 0;
     private double posX = 0; 
@@ -9,6 +9,8 @@ public class Body {
     private double d = 0; 
     private double v0Y = 0; 
     private double v0X = 0; 
+    private double ax = 0; 
+    private double ay = 0; 
 
     public Body(double mass, double vY, double posX, double posY, double vX, double d, double v0Y, double v0X) {
         this.mass = mass;
@@ -20,7 +22,25 @@ public class Body {
         this.v0Y = v0Y;     
         this.v0X = v0X; 
     }
-    
+
+    public double getAx() {
+        return ax;
+    }
+
+
+    public void setAx(double ax) {
+        this.ax = ax;
+    }
+
+
+    public double getAy() {
+        return ay;
+    }
+
+
+    public void setAy(double ay) {
+        this.ay = ay;
+    }
     
     public double getV0Y() {
         return v0Y;

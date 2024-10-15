@@ -18,7 +18,6 @@
             <TextField fx:id="email" layoutX="126.0" layoutY="81.0" prefHeight="25.0" prefWidth="459.0" />
             <Label layoutX="55.0" layoutY="85.0" prefHeight="17.0" prefWidth="33.0" text="email" />
             <Label layoutX="55.0" layoutY="130.0" prefHeight="17.0" prefWidth="33.0" text="senha" />
-            <CheckBox layoutX="55.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#verSenha" text="Ver Senha" />
             <Button fx:id="btMain" layoutX="484.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#logar" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: 1c1c1c;" text="Logar" />
             <PasswordField fx:id="senha" layoutX="126.0" layoutY="126.0" prefHeight="25.0" prefWidth="459.0" />
             <Hyperlink layoutX="466.0" layoutY="151.0" onMouseClicked="#esqueceuSenha" text="Esqueci minha senha" />
@@ -27,6 +26,7 @@
                   <Font size="25.0" />
                </font>
             </Text>
+            <CheckBox layoutX="55.0" layoutY="182.0" mnemonicParsing="false" onMouseClicked="#verSenha" text="Ver senha" />
       </children>
     </AnchorPane>
   </children>
