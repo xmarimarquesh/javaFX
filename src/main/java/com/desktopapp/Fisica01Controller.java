@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.crypto.spec.DESKeySpec;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,7 +27,7 @@ public class Fisica01Controller implements Initializable{
         return scene;
     }
     
-    final double Loss = 0.7;
+    final double Loss = 0.2;
 
     @FXML
     private VBox box;
@@ -40,19 +38,36 @@ public class Fisica01Controller implements Initializable{
     @FXML
     private AnchorPane anchor;
 
+    ArrayList<Spring> molas = new ArrayList<Spring>();
+    ArrayList<Body> bolas = new ArrayList<Body>();
+    Color[] colors = new Color[6];
+
     final double T = 0.03;
-    final double G = 980;
-
-    Body body = new Body(30,0,300,0,-200, 30,0,50);
-    Body body2 = new Body(30,0,200,0,500, 60,0,50000);
-    Body body3 = new Body(3000,0,200,0,500, 90,0,50000);
-
-    Spring spring2 = new Spring(0, 120, 0, body2, body3);
-    Spring spring3 = new Spring(0, 120, 0, body, body3);
+    final double G = 2;
     
     Timer timer = new Timer();
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        colors[0] = Color.GREEN;
+        colors[1] = Color.BLUE;
+        colors[2] = Color.PINK;
+        colors[3] = Color.ORANGE;
+        colors[4] = Color.YELLOW;
+        colors[5] = Color.RED;
+
+
+        int count = 20;
+        for(int i = 0; i < 50; i++){
+            bolas.add(new Body(15,0,count,count,-1000, 30,0,0));
+            count+=200;
+        }
+
+        for(int i = 0; i < bolas.size()-1; i++){
+            for(int j = i + 1; j < bolas.size(); j++){
+                molas.add(new Spring(0, 500, 34, bolas.get(i), bolas.get(j)));
+            }
+        }
+
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run(){
@@ -77,6 +92,11 @@ public class Fisica01Controller implements Initializable{
         if (body.getPosY() > (canvas.getHeight() - body.getD())) {
             body.setvY(body.getvY() * - Loss);
             body.setPosY(canvas.getHeight() - body.getD());
+        }
+
+        if(body.getPosY() <= 0){
+            body.setvY(body.getvY() * - Loss);
+            body.setPosY(0);
         }
     }
     
@@ -125,25 +145,11 @@ public class Fisica01Controller implements Initializable{
         
         spring.getB2().setAx(a2x);
         spring.getB2().setAy(a2y);
+        
     }
     
     
-    Spring spring = new Spring(0, 120, 0, body, body2);
     private void draw() {
-        ArrayList<Spring> molas = new ArrayList<>();
-        ArrayList<Body> bolas = new ArrayList<>();
-        
-        for ( int i = 0; i < bolas.size(); i += 2){
-            molas.add(new Spring(i, i, i, bolas.get(i), bolas.get(i + 1)));
-        }
-
-        molas.add(spring);
-        molas.add(spring2);
-        molas.add(spring3);
-        
-        bolas.add(body);
-        bolas.add(body2);
-        bolas.add(body3);
 
         for(int i = 0; i < molas.size(); i++){
             calcSpringX(molas.get(i));
@@ -159,31 +165,30 @@ public class Fisica01Controller implements Initializable{
             calcVelX(bolas.get(i));
             calcPosX(bolas.get(i));
         }
-
+    
         var g = canvas.getGraphicsContext2D();
 
         g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        
-        g.strokeLine(body.getPosX() + body.getD()/2, body.getPosY()+ body.getD()/2, body2.getPosX()+ body2.getD()/2, body2.getPosY()+ body2.getD()/2);
-        g.setStroke(Color.GREEN);
-        g.setLineWidth(10);
+       
+        g.setLineWidth(3);
+        for(int i = 0; i < bolas.size()-1; i++){
+            for(int j = i + 1; j < bolas.size(); j++){
+                Body b1 = bolas.get(i);
+                Body b2 = bolas.get(j);
 
-        g.strokeLine(body3.getPosX() + body3.getD()/2, body3.getPosY()+ body3.getD()/2, body2.getPosX()+ body2.getD()/2, body2.getPosY()+ body2.getD()/2);
-        g.setStroke(Color.ORANGE);
-        g.setLineWidth(10);
+                g.strokeLine(
+                    b1.getPosX() + b1.getD()/2, 
+                    b1.getPosY() + b1.getD()/2, 
+                    b2.getPosX() + b2.getD()/2, 
+                    b2.getPosY() + b2.getD()/2);
+                g.setStroke(colors[i % 6]);
+            }
+        }
 
-        g.strokeLine(body.getPosX() + body.getD()/2, body.getPosY()+ body.getD()/2, body3.getPosX()+ body3.getD()/2, body3.getPosY()+ body3.getD()/2);
-        g.setStroke(Color.GRAY);
-        g.setLineWidth(10);
-
-        g.setFill(Color.BLUE);
-        g.fillArc(body.getPosX(), body.getPosY(), body.getD(), body.getD(), 0f, 360, ArcType.ROUND);
-        
-        g.setFill(Color.RED);
-        g.fillArc(body2.getPosX(), body2.getPosY(), body2.getD(), body2.getD(), 0f, 360, ArcType.ROUND);
-
-        g.setFill(Color.PINK);
-        g.fillArc(body3.getPosX(), body3.getPosY(), body3.getD(), body3.getD(), 0f, 360, ArcType.ROUND);
+        for(int i = 0; i < bolas.size(); i++){
+            g.setFill(colors[i % 6]);
+            g.fillArc(bolas.get(i).getPosX(), bolas.get(i).getPosY(), bolas.get(i).getD(), bolas.get(i).getD(), 0f, 360, ArcType.ROUND);
+        }
         
     }
 }
